@@ -34,9 +34,9 @@ function fabDraw() {
   fab.setAbsolutePosition(); // set all axes (x.y/z/extruder) to absolute
   fab.setERelative(); // put extruder in relative mode, independent of other axes
   fab.autoHome();
-  fab.setNozzleTemp(205); // °C - you should use a temperature best suited for your filament!
-  fab.setBedTemp(60); // °C - best temperature for good adhesion/no curling will vary based on filament used!
-  fab.introLine(0.2); // draw to lines on the left side of the print bed
+  // fab.setNozzleTemp(205); // °C - you should use a temperature best suited for your filament!
+  // fab.setBedTemp(60); // °C - best temperature for good adhesion/no curling will vary based on filament used!
+  // fab.introLine(0.2); // draw to lines on the left side of the print bed
   
   // variables for our hollow cube!
   let sideLength = 20; //mm
