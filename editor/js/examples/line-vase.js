@@ -11,9 +11,9 @@ function fabDraw() {
   fab.autoHome();
   fab.setTemps(205, 55); // wait for nozzle & bed to heat up
   fab.introLine(); // line back and forth to clean nozzle
-    
+
   /* design your artifact here!
-   *  here's a vase line vase, based on LIA's 'Filament Sculptures' 
+   *  here's a vase line vase, based on LIA's 'Filament Sculptures'
    * https://www.liaworks.com/theprojects/filament-sculptures/
    */
 
@@ -26,9 +26,9 @@ function fabDraw() {
   let maxL = 40;
   let l = 40;
   fab.moveRetract(x, y, startHeight); // move to start
-  for (let h = startHeight; h <= l; h += o) { 
+  for (let h = startHeight; h <= l; h += o) {
     // lines
-    fab.moveExtrude(x + l, y+sf, h, s);
+    fab.moveExtrude(x + l, y + sf, h, s);
     fab.moveExtrude(x + l - sf, y + l, h, s);
     fab.moveExtrude(x, y + l - sf, h, s);
     fab.moveExtrude(x + sf, y, h, s);
@@ -46,7 +46,7 @@ function fabDraw() {
   }
   // end artifact
 
-  fab.presentPart(); // pop the bed out. 
+  fab.presentPart(); // pop the bed out.
 }
 
 function draw() {

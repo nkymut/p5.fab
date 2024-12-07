@@ -38,27 +38,13 @@ function fabDraw() {
     // right
     for (let i = y; i <= y + sideLength; i += 1) {
       let t = map(i, y, y + sideLength, 0, numOscillations * PI);
-      fab.moveExtrude(
-        x + sideLength + amplitude * sin(t + phaseOffset),
-        i,
-        z,
-        5,
-        5,
-        true
-      );
+      fab.moveExtrude(x + sideLength + amplitude * sin(t + phaseOffset), i, z, 5, 5, true);
     }
 
     // back
     for (let i = x + sideLength; i >= x; i -= 1) {
       let t = map(i, x, x + sideLength, 0, numOscillations * PI);
-      fab.moveExtrude(
-        i,
-        y + sideLength + amplitude * sin(t + phaseOffset),
-        z,
-        5,
-        5,
-        true
-      );
+      fab.moveExtrude(i, y + sideLength + amplitude * sin(t + phaseOffset), z, 5, 5, true);
     }
 
     // left

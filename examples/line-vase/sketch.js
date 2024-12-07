@@ -5,32 +5,30 @@ function setup() {
   fab = createFab();
 
   // add a buttons to connect to the printer & to print!
-  let connectButton = createButton('connect!');
+  let connectButton = createButton("connect!");
   connectButton.position(20, 20);
-  connectButton.mousePressed(function() {
+  connectButton.mousePressed(function () {
     fab.serial.requestPort();
   });
 
-  let printButton = createButton('print!');
+  let printButton = createButton("print!");
   printButton.position(20, 60);
-  printButton.mousePressed(function() {
+  printButton.mousePressed(function () {
     fab.print();
   });
 
-  let stopButton = createButton('stop!');
-    stopButton.position(20, 100);
-    stopButton.mousePressed(function() {
-      fab.stopPrint(); // stop streaming the commands to printer
-    });
+  let stopButton = createButton("stop!");
+  stopButton.position(20, 100);
+  stopButton.mousePressed(function () {
+    fab.stopPrint(); // stop streaming the commands to printer
+  });
 
-  let exportButton = createButton('export!');
-    exportButton.position(20, 140);
-    exportButton.mousePressed(function() {
-      fab.exportGcode(); // export gcode to a file.
-    });
-
+  let exportButton = createButton("export!");
+  exportButton.position(20, 140);
+  exportButton.mousePressed(function () {
+    fab.exportGcode(); // export gcode to a file.
+  });
 }
-
 
 function fabDraw() {
   // setup printing variables
@@ -41,9 +39,9 @@ function fabDraw() {
   fab.setNozzleTemp(205); // wait for nozzle to heat up
   fab.setBedTemp(55); // wait for bed to heat up
   fab.introLine(); // line back and forth to clean nozzle
-    
+
   /* design your artifact here!
-   *  here's a vase line vase, based on LIA's 'Filament Sculptures' 
+   *  here's a vase line vase, based on LIA's 'Filament Sculptures'
    * https://www.liaworks.com/theprojects/filament-sculptures/
    */
 
@@ -56,9 +54,9 @@ function fabDraw() {
   let maxL = 40;
   let l = 40;
   fab.moveRetract(x, y, startHeight); // move to start
-  for (let h = startHeight; h <= l; h += o) { 
+  for (let h = startHeight; h <= l; h += o) {
     // lines
-    fab.moveExtrude(x + l, y+sf, h, s);
+    fab.moveExtrude(x + l, y + sf, h, s);
     fab.moveExtrude(x + l - sf, y + l, h, s);
     fab.moveExtrude(x, y + l - sf, h, s);
     fab.moveExtrude(x + sf, y, h, s);
@@ -76,7 +74,7 @@ function fabDraw() {
   }
   // end artifact
 
-  fab.presentPart(); // pop the bed out. 
+  fab.presentPart(); // pop the bed out.
 }
 
 function draw() {

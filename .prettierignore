@@ -1,0 +1,9 @@
+*.md
+*.json
+*.yml
+*.
+**/out
+**/dist
+pnpm-lock.yaml
+pnpm-workspace.yaml
+

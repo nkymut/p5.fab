@@ -24,11 +24,7 @@ function fabDraw() {
       if (z == layerHeight && t == 0) {
         fab.moveRetract(r * cos(t) + center.x, r * sin(t) + center.y, z);
       } else {
-        fab.moveExtrude(
-          r * cos(t) + center.x,
-          r * sin(t) + center.y,
-          z + amplitude * dz
-        );
+        fab.moveExtrude(r * cos(t) + center.x, r * sin(t) + center.y, z + amplitude * dz);
       }
     }
   }

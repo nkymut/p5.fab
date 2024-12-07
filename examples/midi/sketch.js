@@ -4,23 +4,22 @@ let midiController;
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   fab = createFab();
-  midiController = createMidiController(debug=false); // turn on midi mode!
+  midiController = createMidiController((debug = false)); // turn on midi mode!
   midiMode(); // enable midi mode!
-  
 
-  let connectButton = createButton('connect!');
+  let connectButton = createButton("connect!");
   connectButton.position(20, 20);
   connectButton.mousePressed(function () {
     fab.serial.requestPort(); // choose the serial port to connect to
   });
 
-  let printButton = createButton('print!');
+  let printButton = createButton("print!");
   printButton.position(20, 60);
   printButton.mousePressed(function () {
     fab.print(); // start streaming the commands to printer
   });
 
-  let stopButton = createButton('stop!');
+  let stopButton = createButton("stop!");
   stopButton.position(20, 100);
   stopButton.mousePressed(function () {
     fab.stopPrint(); // stop streaming the commands to printer
@@ -53,10 +52,9 @@ function fabDraw() {
       let x = r * cos(theta) + center.x;
       let y = r * sin(theta) + center.y;
       if (z == layerHeight && theta == 0) {
-        fab.moveRetract(x, y, z, speed)
-      }
-      else {
-        fab.moveExtrude(x, y, z, speed)
+        fab.moveRetract(x, y, z, speed);
+      } else {
+        fab.moveExtrude(x, y, z, speed);
       }
     }
   }
@@ -68,21 +66,21 @@ function fabDraw() {
 function midiSetup(midiData) {
   // in midiSetup, we can specify the actions we want to happen on incoming note values
   // to figure out notes for your midi controller, use debug=true in createMidiController
-  if (midiData.note == 1 && midiData.type == MidiTypes.NOTEON) { 
+  if (midiData.note == 1 && midiData.type == MidiTypes.NOTEON) {
     fab.print();
   }
 
-  if (midiData.note == 16) { 
+  if (midiData.note == 16) {
     // for any incoming value, we can name the property we want to cahnge in midiDraw
     midiController.speed = midiData.mapVelocity(600, 3000); // values in mm/min
   }
 
   if (midiData.note == 20) {
-    midiController.extrusionMultiplier =  midiData.mapVelocity(0.5, 5);
+    midiController.extrusionMultiplier = midiData.mapVelocity(0.5, 5);
   }
 
   if (midiData.note == 24) {
-    midiController.zOff =  midiData.mapVelocity(0.5, 5);
+    midiController.zOff = midiData.mapVelocity(0.5, 5);
   }
 }
 

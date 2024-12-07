@@ -45,9 +45,7 @@ function saveSketch() {
   downloadLink.click();
 }
 
-document
-  .getElementById("file-upload")
-  .addEventListener("change", handleFileSelect, false);
+document.getElementById("file-upload").addEventListener("change", handleFileSelect, false);
 
 function handleFileSelect(event) {
   const reader = new FileReader();

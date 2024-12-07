@@ -7,50 +7,50 @@ function setup() {
   printerSettings.fabscribe = true;
   fab = createFab(printerSettings);
 
-  midiMode()
+  midiMode();
   midiController = createMidiController();
 
-
-  let connectButton = createButton('connect!');
+  let connectButton = createButton("connect!");
   connectButton.position(20, 20);
   connectButton.mousePressed(function () {
     fab.serial.requestPort(); // choose the serial port to connect to
   });
 
-  let printButton = createButton('print!');
+  let printButton = createButton("print!");
   printButton.position(20, 60);
   printButton.mousePressed(function () {
     fab.print(); // start streaming the commands to printer
   });
 
-  let stopButton = createButton('stop!');
+  let stopButton = createButton("stop!");
   stopButton.position(20, 100);
   stopButton.mousePressed(function () {
     fab.stopPrint(); // stop streaming the commands to printer
   });
 
   let selectCamera = createSelect();
-  selectCamera.option('Select Camera!');
-  selectCamera.selected('Select Camera!');
+  selectCamera.option("Select Camera!");
+  selectCamera.selected("Select Camera!");
   selectCamera.position(100, 142);
-  let cameraButton = createButton('camera!');
+  let cameraButton = createButton("camera!");
   cameraButton.position(20, 140);
   cameraButton.mousePressed(async function () {
-    fab.videoStream = await navigator.mediaDevices.getUserMedia({ video: { mimeType: 'video/webm', deviceId: selectCamera.selected() } });
+    fab.videoStream = await navigator.mediaDevices.getUserMedia({
+      video: { mimeType: "video/webm", deviceId: selectCamera.selected() },
+    });
     let video = document.querySelector("#video");
     video.srcObject = fab.videoStream;
   });
 
   function gotDevices(mediaDevices) {
-    mediaDevices.forEach(mediaDevice => {
-      if (mediaDevice.kind === 'videoinput') {
+    mediaDevices.forEach((mediaDevice) => {
+      if (mediaDevice.kind === "videoinput") {
         selectCamera.option(mediaDevice.deviceId);
       }
     });
   }
   navigator.mediaDevices.enumerateDevices().then(gotDevices);
   console.log(selectCamera.selected());
-
 }
 
 function fabDraw() {
@@ -72,10 +72,9 @@ function fabDraw() {
       let x = r * cos(theta) + center.x;
       let y = r * sin(theta) + center.y;
       if (z == layerHeight && theta == 0) {
-        fab.moveRetract(x, y, z, speed)
-      }
-      else {
-        fab.moveExtrude(x, y, z, speed)
+        fab.moveRetract(x, y, z, speed);
+      } else {
+        fab.moveExtrude(x, y, z, speed);
       }
     }
   }

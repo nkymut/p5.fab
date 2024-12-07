@@ -58,17 +58,12 @@ function hideHTMLFromEditor() {
   // hide the head of <html><body><script>
   editor.markText({ line: 0, ch: 0 }, { line: 0 }, options); // do not specify ch for the end point so the whole line is hidden
   // hide closing tags </script></html>
-  editor.markText(
-    { line: editor.lastLine(), ch: 0 },
-    { line: editor.lastLine() },
-    options
-  );
+  editor.markText({ line: editor.lastLine(), ch: 0 }, { line: editor.lastLine() }, options);
 }
 
 function updatePreview() {
   var previewFrame = document.getElementById("preview");
-  var preview =
-    previewFrame.contentDocument || previewFrame.contentWindow.document;
+  var preview = previewFrame.contentDocument || previewFrame.contentWindow.document;
   var fullCode = editor.getValue();
 
   if (!initSketch) {
@@ -77,9 +72,7 @@ function updatePreview() {
     preview.write(fullCode);
     preview.close();
     initSketch = true;
-    var userCode = fullCode.split(
-      /<script id='fabPreview'>let fab;|<\/script><\/body><\/html>/
-    )[1];
+    var userCode = fullCode.split(/<script id='fabPreview'>let fab;|<\/script><\/body><\/html>/)[1];
     var beautified = js_beautify(userCode, { indent_size: 2 });
     editor.setValue(beautified);
     flashCode();
