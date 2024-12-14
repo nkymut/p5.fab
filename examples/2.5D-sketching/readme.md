@@ -18,7 +18,7 @@ function setup() {
   let connectButton = createButton("connect!");
   connectButton.position(20, 20);
   connectButton.mousePressed(function () {
-    fab.serial.requestPort(); // choose the serial port to connect to
+    fab.connectPrinter(); // choose the serial port to connect to
   });
 
   let printButton = createButton("print!");

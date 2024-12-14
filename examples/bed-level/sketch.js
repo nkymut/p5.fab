@@ -62,7 +62,7 @@ function onData() {
 
 async function connectToPrinter() {
   fab.commands = [];
-  await fab.serial.requestPort();
+  await fab.connectPrinter();
 }
 
 function heatNozzle() {

@@ -127,7 +127,7 @@ function slope(x1, z1, x2, z2) {
 }
 
 function connectPrinter() {
-    fab.serial.requestPort();
+    fab.connectPrinter();
   }
 
 function bSend(dir) {
