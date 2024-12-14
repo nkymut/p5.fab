@@ -16,6 +16,10 @@ function connectPrinter() {
   fab.connectPrinter();
 }
 
+function disconnectPrinter() {
+  fab.disconnectPrinter();
+}
+
 function bSend(dir) {
   let u = bStep.value();
   fab.setRelativePosition();
@@ -170,6 +174,11 @@ function setupUI() {
   bConnectPrinter.addClass("heat-button");
   bConnectPrinter.mousePressed(connectPrinter);
 
+  let bDisconnectPrinter = createButton('Disconnect');
+  bDisconnectPrinter.position(80, windowHeight / 3 - 60);
+  bDisconnectPrinter.addClass('heat-button');
+  bDisconnectPrinter.mousePressed(disconnectPrinter);
+
   let bHeatNozzle = createButton("Heat Nozzle");
   bHeatNozzle.position(20, windowHeight / 3 + 30);
   bHeatNozzle.addClass("heat-button");
@@ -228,3 +237,17 @@ function setupUI() {
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
+
+let lastMoveTime = 0;
+let interval = 500; // interval in milliseconds
+
+// function mouseDragged() {
+//   fab.setAbsolutePosition();
+
+//     if (millis() - lastMoveTime > interval) {
+//       fab.move(map(mouseX, 0, width, 10, 200), map(mouseY, 0, height, 10, 200), 10);
+//       fab.print();
+//       lastMoveTime = millis();
+//     }
+
+// }

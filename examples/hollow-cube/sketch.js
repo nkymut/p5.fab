@@ -67,6 +67,6 @@ function fabDraw() {
 
 function draw() {
   orbitControl(2, 2, 0.1);
-  background(255);
+  //background(255);
   fab.render();
 }
