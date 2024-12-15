@@ -17,11 +17,11 @@ function evaluateJs(code) {
   // can't handle code errors which happen in p5 loops (draw, etc) through try/catch-ing the eval()
   // instead, inject try/catch loops here by iterating through the ast
   // Add validation for empty or invalid code
-  if (!code || typeof code !== 'string' || code.trim() === '') {
-    console.warn('Empty or invalid code provided to evaluateJs');
+  if (!code || typeof code !== "string" || code.trim() === "") {
+    console.warn("Empty or invalid code provided to evaluateJs");
     return;
   }
-  
+
   try {
     var ast = acorn.parse(code, { ecmaVersion: 2020 });
     var codeToEval = "";
@@ -29,13 +29,13 @@ function evaluateJs(code) {
 
     // Validate AST structure
     if (!ast.body || !Array.isArray(ast.body)) {
-      console.warn('Invalid AST structure');
+      console.warn("Invalid AST structure");
       return;
     }
 
     for (const n in ast.body) {
       // Validate node exists and has required properties
-      if (!ast.body[n] || typeof ast.body[n].start === 'undefined' || typeof ast.body[n].end === 'undefined') {
+      if (!ast.body[n] || typeof ast.body[n].start === "undefined" || typeof ast.body[n].end === "undefined") {
         console.warn(`Invalid node at index ${n}`);
         continue;
       }
@@ -44,20 +44,14 @@ function evaluateJs(code) {
 
       if (ast.body[n].type == "FunctionDeclaration") {
         // Validate function node structure
-        if (!ast.body[n].body || typeof ast.body[n].body.start === 'undefined') {
+        if (!ast.body[n].body || typeof ast.body[n].body.start === "undefined") {
           console.warn(`Invalid function declaration at index ${n}`);
           continue;
         }
 
-        functionDeclaration = code.slice(
-          ast.body[n].start, 
-          ast.body[n].body.start + 1
-        );
-        
-        functionBody = code.slice(
-          ast.body[n].body.start + 1, 
-          ast.body[n].end - 1
-        );
+        functionDeclaration = code.slice(ast.body[n].start, ast.body[n].body.start + 1);
+
+        functionBody = code.slice(ast.body[n].body.start + 1, ast.body[n].end - 1);
 
         nodeBody =
           functionDeclaration +

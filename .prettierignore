@@ -1,6 +1,7 @@
 *.md
 *.json
 *.yml
+*.html
 *.
 **/out
 **/dist

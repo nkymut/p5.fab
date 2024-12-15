@@ -44,7 +44,7 @@ function hideHTMLFromEditor() {
     inclusiveLeft: true,
     inclusiveRight: true,
   };
-  
+
   // hide the head of <html><body><script>
   editor.markText({ line: 0, ch: 0 }, { line: 0 }, options);
   // hide closing tags </script></html>
